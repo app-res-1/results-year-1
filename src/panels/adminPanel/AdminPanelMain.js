@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { navigate } from "@reach/router";
-import { Tabs, Input, Button } from "antd";
+import { Tabs, Input, Button, Select } from "antd";
 const { TabPane } = Tabs;
 
 import { Icon20HomeOutline } from "@vkontakte/icons";
@@ -10,6 +10,14 @@ import { tabsPagesData, notifyMockData } from "../../helpers/index";
 
 import "./AdminPanelMain.scss";
 
+const notyPages = [
+  { value: 0, label: "0" },
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+];
+
 const AdminPanelMain = ({
   onChangeAction,
   editLinkGroup,
@@ -18,7 +26,11 @@ const AdminPanelMain = ({
   getGroupId,
   notifyLinks,
   editLinkNotify,
+  onChangeCurrentNotyPage,
+  currentNotyPage,
 }) => {
+  const [renderTabNotify, setRenderTabNotify] = useState([]);
+  const [notifyKey, setNotifyKey] = useState(0);
   // const arrStats = [];
 
   // for (let key in getButtonStats) {
@@ -28,7 +40,12 @@ const AdminPanelMain = ({
   // }
 
   const renderTabPage = tabsPagesData(getGroupId);
-  const renderTabNotify = notifyMockData(notifyLinks);
+
+  useEffect(() => {
+    const render = notifyMockData(notifyLinks, currentNotyPage);
+    setRenderTabNotify(render);
+    setNotifyKey(Math.random());
+  }, [currentNotyPage]);
 
   return (
     <Tabs
@@ -70,23 +87,36 @@ const AdminPanelMain = ({
       </TabPane>
 
       <TabPane tab="Уведомления" key="notify">
-        {renderTabNotify?.map((item, index) => {
-          return (
-            <TabItem
-              key={item.keyItem}
-              keyItem={item.keyItem}
-              title={item.title}
-              placeholder={item.placeholder}
-              onChangeAction={onChangeAction}
-              defaultValue={item.defaultValue}
-              editLink={editLinkNotify}
-              className={
-                renderTabPage.length - 1 === index &&
-                "admin-panel-container last"
-              }
-            />
-          );
-        })}
+        <div className="admin-panel-container">
+          <div className="title">Номер страницы для уведомлений</div>
+          <Select
+            style={{ width: 120 }}
+            defaultValue={0}
+            onChange={onChangeCurrentNotyPage}
+            options={notyPages}
+            placeholder="Выберите страницу"
+          ></Select>
+        </div>
+
+        <div key={notifyKey}>
+          {renderTabNotify?.map((item, index) => {
+            return (
+              <TabItem
+                key={item.keyItem}
+                keyItem={item.keyItem}
+                title={item.title}
+                placeholder={item.placeholder}
+                onChangeAction={onChangeAction}
+                defaultValue={item.defaultValue}
+                editLink={editLinkNotify}
+                className={
+                  renderTabPage.length - 1 === index &&
+                  "admin-panel-container last"
+                }
+              />
+            );
+          })}
+        </div>
       </TabPane>
     </Tabs>
   );

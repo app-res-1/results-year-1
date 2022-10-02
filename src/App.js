@@ -13,7 +13,13 @@ import "./styles/panels.sass";
 import "./styles/img.sass";
 
 //constants
-import { APP_ID_DEFAULT, NAME_PROJECT, notifyUrl, rootUrl } from "./constants";
+import {
+  APP_ID_DEFAULT,
+  NAME_PROJECT,
+  notifyUrl,
+  rootUrl,
+  NOTIFY_HASH_ARR,
+} from "./constants";
 
 import { Home, ResultPanel, AdminPanel, NotifyPage } from "./panels";
 import axios from "axios";
@@ -36,6 +42,7 @@ const App = () => {
   const [templatePage, setTemplatePage] = useState("/");
   const [imgIndex, setImgIndex] = useState(null);
   const [notifyLinks, setNotifyLinks] = useState({});
+  const [notyPage, setNotyPage] = useState(0);
 
   const getStats = () => {
     axios
@@ -57,9 +64,29 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (document.location.hash === "#noty") {
-      navigate("/notify");
-    }
+    const goNotifyPage = async () => {
+      const setNotifyPage = async () => {
+        if (document.location.hash === "#noty") {
+          setNotyPage(0);
+        } else if (document.location.hash === "#noty1") {
+          setNotyPage(1);
+        } else if (document.location.hash === "#noty2") {
+          setNotyPage(2);
+        } else if (document.location.hash === "#noty3") {
+          setNotyPage(3);
+        } else if (document.location.hash === "#noty4") {
+          setNotyPage(4);
+        }
+      };
+
+      await setNotifyPage();
+
+      if (NOTIFY_HASH_ARR.includes(document.location.hash)) {
+        navigate("/notify");
+      }
+    };
+
+    goNotifyPage();
   }, []);
 
   useEffect(() => {
@@ -131,8 +158,8 @@ const App = () => {
     <Router>
       {fetchedUser && (
         <Home
-          path={NAME_PROJECT}
-          // path="/"
+          // path={NAME_PROJECT}
+          path="/"
           fetchedUser={fetchedUser}
           go={go}
           setIMGresult={setIMGresult}
@@ -170,7 +197,11 @@ const App = () => {
         imgIndex={imgIndex}
         notifyLinks={notifyLinks}
       />
-      <NotifyPage path="/notify" notifyLinks={notifyLinks} />
+      <NotifyPage
+        path="/notify"
+        notifyLinks={notifyLinks}
+        notyPage={notyPage}
+      />
     </Router>
   );
 };

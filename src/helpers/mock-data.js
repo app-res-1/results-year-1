@@ -24,12 +24,20 @@ export const typeLinkKey = {
   "app-id": `links${NAME_PROJECT}_.appID`,
 };
 
-export const typeLinkKeyNotify = {
-  title: `${NAME_PROJECT}_title`,
-  linkButton: `${NAME_PROJECT}_linkButton`,
-  linkImg: `${NAME_PROJECT}_linkImg`,
-  linkTelegram: `${NAME_PROJECT}_linkTelegram`,
-  textButtonNotify: `${NAME_PROJECT}_textButtonNotify`,
+export const getTypeLinkKeyNotify = (type, notyPage) => {
+  const notifyLinks = {
+    title: `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_title`,
+    linkButton: `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkButton`,
+    linkImg: `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkImg`,
+    linkTelegram: `${NAME_PROJECT}${
+      notyPage ? `_${notyPage}` : ""
+    }_linkTelegram`,
+    textButtonNotify: `${NAME_PROJECT}${
+      notyPage ? `_${notyPage}` : ""
+    }_textButtonNotify`,
+  };
+
+  return notifyLinks[type];
 };
 
 export const tabsPagesData = (getGroupId) => [
@@ -158,44 +166,58 @@ export const tabsPagesData = (getGroupId) => [
   },
 ];
 
-export const notifyMockData = (notifyLinks) => [
-  {
-    keyItem: "linkTelegram",
-    title: "Ссылка для кнопки Telegram",
-    placeholder: "Ссылка для кнопки Telegram",
-    defaultValue:
-      notifyLinks[`${NAME_PROJECT}_linkTelegram`] || "Укажите ссылку",
-  },
+export const notifyMockData = (notifyLinks, notyPage) => {
+  return [
+    {
+      keyItem: "linkTelegram",
+      title: "Ссылка для кнопки Telegram",
+      placeholder: "Ссылка для кнопки Telegram",
+      defaultValue:
+        notifyLinks[
+          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkTelegram`
+        ] || "Укажите ссылку",
+    },
 
-  {
-    keyItem: "title",
-    title: "Текст",
-    placeholder: "Текст с описанием",
-    defaultValue: notifyLinks[`${NAME_PROJECT}_title`] || "Укажите текст",
-  },
+    {
+      keyItem: "title",
+      title: "Текст",
+      placeholder: "Текст с описанием",
+      defaultValue:
+        notifyLinks[`${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_title`] ||
+        "Укажите текст",
+    },
 
-  {
-    keyItem: "linkButton",
-    title: "Ссылка для кнопки",
-    placeholder: "Ссылка для кнопки",
-    defaultValue: notifyLinks[`${NAME_PROJECT}_linkButton`] || "Укажите ссылку",
-  },
+    {
+      keyItem: "linkButton",
+      title: "Ссылка для кнопки",
+      placeholder: "Ссылка для кнопки",
+      defaultValue:
+        notifyLinks[
+          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkButton`
+        ] || "Укажите ссылку",
+    },
 
-  {
-    keyItem: "linkImg",
-    title: "Ссылка на картинку",
-    placeholder: "Ссылка на картинку",
-    defaultValue: notifyLinks[`${NAME_PROJECT}_linkImg`] || "Укажите ссылку",
-  },
+    {
+      keyItem: "linkImg",
+      title: "Ссылка на картинку",
+      placeholder: "Ссылка на картинку",
+      defaultValue:
+        notifyLinks[
+          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkImg`
+        ] || "Укажите ссылку",
+    },
 
-  {
-    keyItem: "textButtonNotify",
-    title: "Текст кнопки",
-    placeholder: "Текст кнопки",
-    defaultValue:
-      notifyLinks[`${NAME_PROJECT}_textButtonNotify`] || "Укажите текст кнопки",
-  },
-];
+    {
+      keyItem: "textButtonNotify",
+      title: "Текст кнопки",
+      placeholder: "Текст кнопки",
+      defaultValue:
+        notifyLinks[
+          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_textButtonNotify`
+        ] || "Укажите текст кнопки",
+    },
+  ];
+};
 
 // useEffect(() => {
 //   ["links.results-year_title", "linksresults-year_title", "test"].forEach(

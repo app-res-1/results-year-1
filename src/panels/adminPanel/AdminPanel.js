@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import { AdminPanelMain } from "/";
 import { notifyUrl, rootUrl } from "../../constants";
-import { typeLinkKey, typeLinkKeyNotify } from "../../helpers/index";
+import { typeLinkKey, getTypeLinkKeyNotify } from "../../helpers/index";
 
 const AdminPanel = ({
   openAlert,
@@ -13,6 +13,7 @@ const AdminPanel = ({
   notifyLinks,
 }) => {
   const [currentLink, setCurrentLink] = useState("");
+  const [currentNotyPage, setCurrentNotyPage] = useState(0);
 
   function editLinkGroup(type) {
     axios
@@ -37,7 +38,7 @@ const AdminPanel = ({
   function editLinkNotify(type) {
     axios
       .post(`${notifyUrl}/edit`, {
-        key: typeLinkKeyNotify[type],
+        key: getTypeLinkKeyNotify(type, currentNotyPage),
         value: currentLink,
       })
       .then(function (response) {
@@ -52,6 +53,10 @@ const AdminPanel = ({
     setCurrentLink(value);
   }
 
+  const onChangeCurrentNotyPage = (value) => {
+    setCurrentNotyPage(value);
+  };
+
   return (
     <div>
       <AdminPanelMain
@@ -62,6 +67,8 @@ const AdminPanel = ({
         getGroupId={getGroupId}
         notifyLinks={notifyLinks}
         editLinkNotify={editLinkNotify}
+        onChangeCurrentNotyPage={onChangeCurrentNotyPage}
+        currentNotyPage={currentNotyPage}
       />
       {snackbar}
     </div>

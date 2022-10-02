@@ -6,6 +6,17 @@ export const MAN_GROUP_ID = 207161988;
 // (рассылка женщины ждем ссылку)
 export const WOMAN_GROUP_ID = 187253745;
 
+// админы
+export const ADMINS_IDS = [738505078, 219183172, 740808719, 530017803];
+// страницы уведомлений
+export const NOTIFY_HASH_ARR = [
+  "#noty",
+  "#noty1",
+  "#noty2",
+  "#noty3",
+  "#noty4",
+];
+
 export const USER_ID = Number(
   new URLSearchParams(document.location.search).get("vk_user_id")
 );
