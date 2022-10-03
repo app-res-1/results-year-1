@@ -158,8 +158,8 @@ const App = () => {
     <Router>
       {fetchedUser && (
         <Home
-          // path={NAME_PROJECT}
-          path="/"
+          path={NAME_PROJECT}
+          // path="/"
           fetchedUser={fetchedUser}
           go={go}
           setIMGresult={setIMGresult}
@@ -201,6 +201,7 @@ const App = () => {
         path="/notify"
         notifyLinks={notifyLinks}
         notyPage={notyPage}
+        getPlatform={getPlatform}
       />
     </Router>
   );
