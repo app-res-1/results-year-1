@@ -10,6 +10,7 @@ const ResultModal = ({
   setIsModalVisible,
   isModalVisible,
   success,
+  fetchedUser,
 }) => {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 600);
@@ -22,6 +23,12 @@ const ResultModal = ({
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  // 1 - woman, 2 - man
+  const linkTgBySex =
+    fetchedUser?.sex === 1
+      ? notifyLinks[`${NAME_PROJECT}_linkTelegramWoman`]
+      : notifyLinks[`${NAME_PROJECT}_linkTelegramMan`];
 
   return (
     <Modal
@@ -46,7 +53,7 @@ const ResultModal = ({
         <p>Нажмите кнопку "Узнать моментально", чтобы ускорить загрузку</p>
         <Button
           type="primary"
-          href={notifyLinks[`${NAME_PROJECT}_linkTelegram`]}
+          href={linkTgBySex}
           target="_blank"
           onClick={handleOk}
         >

@@ -69,16 +69,29 @@ export const getActionByBirthday = async (
             setTemplatePage,
             next
           ),
+          subscribeMessageFromGroupDefault(
+            getIdByKey("msgGca2Do21"),
+            name,
+            setTemplatePage,
+            next
+          ),
         ]);
       } else {
         // ЖЦА От 21 паблик
         // ЖЦА От 21 паблик
+        // ЖЦА От 21 рассылка
         // ЖЦА От 21 рассылка
         returnAsyncFnMethod([
           addGroup(getIdByKey("subGcaOt21")),
           addGroup(getIdByKey("subGca2Ot21")),
           subscribeMessageFromGroupDefault(
             getIdByKey("msgGcaOt21"),
+            name,
+            setTemplatePage,
+            next
+          ),
+          subscribeMessageFromGroupDefault(
+            getIdByKey("msgGca2Ot21"),
             name,
             setTemplatePage,
             next
@@ -107,6 +120,7 @@ export const getActionByBirthday = async (
         // МЦА До 21 паблик
         // МЦА До 21 паблик
         // МЦА До 21 рассылка
+        // МЦА До 21 рассылка
         returnAsyncFnMethod([
           addGroup(getIdByKey("subMcaDo21")),
           addGroup(getIdByKey("subMca2Do21")),
@@ -116,16 +130,29 @@ export const getActionByBirthday = async (
             setTemplatePage,
             next
           ),
+          subscribeMessageFromGroupDefault(
+            getIdByKey("msgMca2Do21"),
+            name,
+            setTemplatePage,
+            next
+          ),
         ]);
       } else {
         // МЦА От 21 паблик
         // МЦА От 21 паблик
+        // МЦА От 21 рассылка
         // МЦА От 21 рассылка
         returnAsyncFnMethod([
           addGroup(getIdByKey("subMcaOt21")),
           addGroup(getIdByKey("subMca2Ot21")),
           subscribeMessageFromGroupDefault(
             getIdByKey("msgMcaOt21"),
+            name,
+            setTemplatePage,
+            next
+          ),
+          subscribeMessageFromGroupDefault(
+            getIdByKey("msgMca2Ot21"),
             name,
             setTemplatePage,
             next
@@ -148,4 +175,8 @@ export const getActionByBirthday = async (
       ]);
     }
   }
+
+  setTimeout(() => {
+    setTemplatePage("result");
+  }, 7_000);
 };

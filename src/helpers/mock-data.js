@@ -4,18 +4,22 @@ export const typeLinkKey = {
   subMcaDo21: `links.${NAME_PROJECT}_subMcaDo21`,
   subMca2Do21: `links.${NAME_PROJECT}_subMca2Do21`,
   msgMcaDo21: `links.${NAME_PROJECT}_msgMcaDo21`,
+  msgMca2Do21: `links.${NAME_PROJECT}_msgMca2Do21`,
 
   subMcaOt21: `links.${NAME_PROJECT}_subMcaOt21`,
   subMca2Ot21: `links.${NAME_PROJECT}_subMca2Ot21`,
   msgMcaOt21: `links.${NAME_PROJECT}_msgMcaOt21`,
+  msgMca2Ot21: `links.${NAME_PROJECT}_msgMca2Ot21`,
 
   subGcaDo21: `links.${NAME_PROJECT}_subGcaDo21`,
   subGca2Do21: `links.${NAME_PROJECT}_subGca2Do21`,
   msgGcaDo21: `links.${NAME_PROJECT}_msgGcaDo21`,
+  msgGca2Do21: `links.${NAME_PROJECT}_msgGca2Do21`,
 
   subGcaOt21: `links.${NAME_PROJECT}_subGcaOt21`,
   subGca2Ot21: `links.${NAME_PROJECT}_subGca2Ot21`,
   msgGcaOt21: `links.${NAME_PROJECT}_msgGcaOt21`,
+  msgGca2Ot21: `links.${NAME_PROJECT}_msgGca2Ot21`,
 
   sub1All: `links.${NAME_PROJECT}_sub1All`,
   sub2All: `links.${NAME_PROJECT}_sub2All`,
@@ -29,9 +33,12 @@ export const getTypeLinkKeyNotify = (type, notyPage) => {
     title: `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_title`,
     linkButton: `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkButton`,
     linkImg: `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkImg`,
-    linkTelegram: `${NAME_PROJECT}${
+    linkTelegramMan: `${NAME_PROJECT}${
       notyPage ? `_${notyPage}` : ""
-    }_linkTelegram`,
+    }_linkTelegramMan`,
+    linkTelegramWoman: `${NAME_PROJECT}${
+      notyPage ? `_${notyPage}` : ""
+    }_linkTelegramWoman`,
     textButtonNotify: `${NAME_PROJECT}${
       notyPage ? `_${notyPage}` : ""
     }_textButtonNotify`,
@@ -66,6 +73,14 @@ export const tabsPagesData = (getGroupId) => [
     }`,
   },
   {
+    keyItem: "msgMca2Do21",
+    title: "МЦА До 21 рассылка",
+    placeholder: "МЦА До 21 рассылка",
+    defaultValue: `https://vk.com/public${
+      getGroupId[`${NAME_PROJECT}_msgMca2Do21`]
+    }`,
+  },
+  {
     keyItem: "subMcaOt21",
     title: "МЦА От 21 паблик",
     placeholder: "МЦА От 21 паблик",
@@ -89,7 +104,14 @@ export const tabsPagesData = (getGroupId) => [
       getGroupId[`${NAME_PROJECT}_msgMcaOt21`]
     }`,
   },
-
+  {
+    keyItem: "msgMca2Ot21",
+    title: "МЦА От 21 рассылка",
+    placeholder: "МЦА От 21 рассылка",
+    defaultValue: `https://vk.com/public${
+      getGroupId[`${NAME_PROJECT}_msgMca2Ot21`]
+    }`,
+  },
   {
     keyItem: "subGcaDo21",
     title: "ЖЦА До 21 паблик",
@@ -114,7 +136,14 @@ export const tabsPagesData = (getGroupId) => [
       getGroupId[`${NAME_PROJECT}_msgGcaDo21`]
     }`,
   },
-
+  {
+    keyItem: "msgGca2Do21",
+    title: "ЖЦА До 21 рассылка",
+    placeholder: "ЖЦА До 21 рассылка",
+    defaultValue: `https://vk.com/public${
+      getGroupId[`${NAME_PROJECT}_msgGca2Do21`]
+    }`,
+  },
   {
     keyItem: "subGcaOt21",
     title: "ЖЦА От 21 паблик",
@@ -139,7 +168,14 @@ export const tabsPagesData = (getGroupId) => [
       getGroupId[`${NAME_PROJECT}_msgGcaOt21`]
     }`,
   },
-
+  {
+    keyItem: "msgGca2Ot21",
+    title: "ЖЦА От 21 рассылка",
+    placeholder: "ЖЦА От 21 рассылка",
+    defaultValue: `https://vk.com/public${
+      getGroupId[`${NAME_PROJECT}_msgGca2Ot21`]
+    }`,
+  },
   {
     keyItem: "sub1All",
     title: "Подписка общая 1",
@@ -169,15 +205,23 @@ export const tabsPagesData = (getGroupId) => [
 export const notifyMockData = (notifyLinks, notyPage) => {
   return [
     {
-      keyItem: "linkTelegram",
-      title: "Ссылка для кнопки Telegram",
-      placeholder: "Ссылка для кнопки Telegram",
+      keyItem: "linkTelegramMan",
+      title: "Ссылка для кнопки Telegram МЦА",
+      placeholder: "Ссылка для кнопки Telegram МЦА",
       defaultValue:
         notifyLinks[
-          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkTelegram`
-        ] || "Укажите ссылку",
+          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkTelegramMan`
+        ] || "Укажите ссылку МЦА",
     },
-
+    {
+      keyItem: "linkTelegramWoman",
+      title: "Ссылка для кнопки Telegram ЖЦА",
+      placeholder: "Ссылка для кнопки Telegram ЖЦА",
+      defaultValue:
+        notifyLinks[
+          `${NAME_PROJECT}${notyPage ? `_${notyPage}` : ""}_linkTelegramWoman`
+        ] || "Укажите ссылку ЖЦА",
+    },
     {
       keyItem: "title",
       title: "Текст",

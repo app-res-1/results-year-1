@@ -95,6 +95,7 @@ const ResultPanel = ({
         showModal={showModal}
         notifyLinks={notifyLinks}
         success={success}
+        fetchedUser={fetchedUser}
       />
 
       {/* <Modal
